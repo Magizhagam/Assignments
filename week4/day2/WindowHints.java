@@ -24,8 +24,45 @@ public class WindowHints {
 
 		driver.findElement(By.linkText("Contacts")).click();
 		driver.findElement(By.linkText("Merge Contacts")).click();
+		driver.findElement(By.xpath("(//img[@alt='Lookup'])[1]")).click();
+		Thread.sleep(4000);
 		
-		driver.findElement(By.xpath("(//img[@id='ext-gen527'])[1]")).click();	
+		Set<String> winds = driver.getWindowHandles();
+		List<String> lst=new ArrayList<String>(winds);
+		driver.switchTo().window(lst.get(1));
+		
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a")).click();
+		Thread.sleep(5000);
+
+		driver.switchTo().window(lst.get(0));
+		
+		driver.findElement(By.xpath("(//img[@alt='Lookup'])[2]")).click();
+		Thread.sleep(4000);
+		
+		Set<String> winds1 = driver.getWindowHandles();
+		List<String> lst1=new ArrayList<String>(winds1);
+		driver.switchTo().window(lst1.get(1));
+		
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+
+		driver.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a")).click();
+		Thread.sleep(4000);
+		
+		driver.switchTo().window(lst.get(0));
+		
+		driver.findElement(By.xpath("//a[text()='Merge']")).click();
+		Thread.sleep(4000);
+		
+		Alert alt=driver.switchTo().alert();
+		alt.accept();
+
+		String title=driver.getTitle();
+		System.out.println(title);
+
 		
 
 	}
